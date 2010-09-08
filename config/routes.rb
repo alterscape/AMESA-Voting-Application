@@ -1,10 +1,12 @@
 AmesaVote::Application.routes.draw do
+  devise_for :admins
   devise_for :voters
 
-
-  
   root :to => "home#index"
-  resources :questions
+  
+  namespace :admin do
+    resources :ballots
+  end
   
   match 'vote/error' => 'vote#error', :as => :vote_error
   match '/vote/' => 'vote#index'
