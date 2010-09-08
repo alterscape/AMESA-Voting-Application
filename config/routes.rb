@@ -1,4 +1,17 @@
 AmesaVote::Application.routes.draw do
+  devise_for :voters
+
+
+  
+  root :to => "home#index"
+  resources :questions
+  
+  match 'vote/error' => 'vote#error', :as => :vote_error
+  match '/vote/' => 'vote#index'
+  get '/vote/:ballot_id' => 'vote#ballot'
+  post '/vote/:ballot_id' => 'vote#submit_vote'
+  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

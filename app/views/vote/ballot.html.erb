@@ -1,0 +1,18 @@
+<h2>Ballot for <%= @ballot.title %></h2>
+<%= form_for(:ballot_form, :method => :post, :url => "/vote/#{@ballot.id}") do |form|%>
+	<ol>
+	<%- @ballot.questions.each do |question| %>
+		<li><%= question.text %>
+			<ul>
+			<%- question.question_choices.each do |choice| %>
+				<li>
+					<%= form.radio_button question.id, choice.id %>
+					<%=form.label question.id, choice.text %>
+				</li>
+			<%- end %>
+			</ul>
+			</li>
+	<%- end %>
+</ol>
+<%= form.submit "Cast my Vote" %>
+<%- end %>

@@ -1,0 +1,6 @@
+<h2>List of Available Ballots</h2>
+<ul>
+<%- @ballots.each do |ballot|%>
+	<li><a href="/vote/<%=ballot.id%>"><%= ballot.title %></a></li>
+<%- end %>
+</ul>
